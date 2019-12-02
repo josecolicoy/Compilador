@@ -1,6 +1,9 @@
 import ply.yacc as yacc
-from analizador_lexico import tokens
-from analizador_lexico import analizador
+from lexico import tokens
+from lexico import analizador
+
+
+print (tokens)
 
 # resultado del analisis
 resultado_gramatica = []
@@ -23,14 +26,7 @@ def p_declaracion_expr(t):
     t[0] = t[1]
 
 def p_expresion_operaciones(t):
-    '''
-    expresion  :   expresion SUMA expresion
-                |   expresion RESTA expresion
-                |   expresion MULT expresion
-                |   expresion DIV expresion
-                |   expresion POTENCIA expresion
-                |   expresion MODULO expresion
-    '''
+
     if t[2] == '+':
         t[0] = t[1] + t[3]
     elif t[2] == '-':
@@ -169,7 +165,7 @@ def prueba_sintactica(data):
 if __name__ == '__main__':
     while True:
         try:
-            s = raw_input(' ingresa dato >>> ')
+            s = input(' ingresa dato >>> ')
         except EOFError:
             continue
         if not s: continue
