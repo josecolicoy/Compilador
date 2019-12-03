@@ -23,20 +23,17 @@ tokns = {
 }
 
 tokens = reservada + [
-    'IDENTIFICADOR',
-    'ENTERO',
-    'ASIGNAR',
-
     'SUMA',
     'RESTA',
     'MULT',
     'DIV',
     'POTENCIA',
     'MODULO',
-
-   'MINUSMINUS',
-   'PLUSPLUS',
-
+    'IDENTIFICADOR',
+    'ENTERO',
+    'ASIGNAR',
+    'MINUSMINUS',
+    'PLUSPLUS',
     #logica
     'AND',
     'OR',
@@ -49,14 +46,12 @@ tokens = reservada + [
     'DISTINTO',
     # Symbolos
     'NUMERAL',
-
     'PARIZQ',
     'PARDER',
     'CORIZQ',
     'CORDER',
     'LLAIZQ',
     'LLADER',
-    
     # Otros
     'PUNTOCOMA',
     'COMA',
@@ -70,16 +65,15 @@ tokens = reservada + [
 tokens += tokns.values()
 
 # Reglas de Expresiones Regualres para token de Contexto simple
-
+#aritmeticos
 t_SUMA = r'\+'
 t_RESTA = r'-'
-t_MINUSMINUS = r'\-\-'
-# t_PUNTO = r'\.'
 t_MULT = r'\*'
 t_DIV = r'/'
-t_MODULO = r'\%'
+t_MINUSMINUS = r'\-\-'
 t_POTENCIA = r'(\*{2} | \^)'
 
+t_MODULO = r'\%'
 t_ASIGNAR = r'='
 # Expresiones Logicas
 t_AND = r'\&\&'
@@ -154,10 +148,10 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 
-def t_comentarios(t):
-     r'\+(\w\d*\s*)+\*+'
-     t.lexer.lineno += 1
-     print("Comentario en una linea")
+# def t_comentarios(t):
+#      r'\+(\w\d*\s*)+\*+'
+#      t.lexer.lineno += 1
+#      print("Comentario en una linea")
      
 t_ignore =' \t\n'
 

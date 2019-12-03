@@ -26,7 +26,14 @@ def p_declaracion_expr(t):
     t[0] = t[1]
 
 def p_expresion_operaciones(t):
-
+    '''
+    expresion  :   expresion SUMA expresion
+                |   expresion RESTA expresion
+                |   expresion MULT expresion
+                |   expresion DIV expresion
+                |   expresion POTENCIA expresion
+                |   expresion MODULO expresion
+    '''
     if t[2] == '+':
         t[0] = t[1] + t[3]
     elif t[2] == '-':
@@ -133,6 +140,10 @@ def p_expresion_nombre(t):
         print("Nombre desconocido ", t[1])
         t[0] = 0
 
+def p_comentario(t):
+    'expresion : NUMERAL expresion'
+    t[0] = t[2]
+
 def p_error(t):
     global resultado_gramatica
     if t:
@@ -142,8 +153,6 @@ def p_error(t):
         resultado = "Error sintactico {}".format(t)
         print(resultado)
     resultado_gramatica.append(resultado)
-
-
 
 # instanciamos el analizador sistactico
 parser = yacc.yacc()
