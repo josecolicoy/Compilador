@@ -41,7 +41,11 @@ def p_expresion_operaciones(t):
     elif t[2] == '*':
         t[0] = t[1] * t[3]
     elif t[2] == '/':
-        t[0] = t[1] / t[3]
+        if p[3] == 0:
+            print("No es posible dividir por zero")
+        else:
+            t[0] = t[1] / t[3]
+
     elif t[2] == '%':
         t[0] = t[1] % t[3]
     elif t[2] == '**':
@@ -143,6 +147,16 @@ def p_expresion_nombre(t):
 def p_comentario(t):
     'expresion : NUMERAL expresion'
     t[0] = t[2]
+
+
+def p_condicion_ari(t): #condicion if 
+    'expresion : ARI PARIZQ expresion PARDER DPUNTOS'
+    t[0]=t[3]
+
+def p_condicion_wak(t): #condicion else
+    'expresion : WAK PARIZQ expresion PARDER DPUNTOS'
+    t[0]=t[3]
+
 
 def p_error(t):
     global resultado_gramatica

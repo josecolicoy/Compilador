@@ -2,10 +2,8 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ARI
     CADENA
     COMA
-    DPUNTOS
     GBAJO
     LOGICA
     MAYORDER
@@ -57,11 +55,12 @@ Rule 31    expresion -> ENTERO
 Rule 32    expresion -> COMDOB expresion COMDOB
 Rule 33    expresion -> IDENTIFICADOR
 Rule 34    expresion -> NUMERAL expresion
+Rule 35    expresion -> ARI PARIZQ expresion PARDER DPUNTOS
 
 Terminals, with rules where they appear
 
 AND                  : 25 28
-ARI                  : 
+ARI                  : 35
 ASIGNAR              : 1
 CADENA               : 
 COMA                 : 
@@ -70,7 +69,7 @@ CORDER               : 12
 CORIZQ               : 12
 DISTINTO             : 18 24
 DIV                  : 6
-DPUNTOS              : 
+DPUNTOS              : 35
 ENTERO               : 31
 GBAJO                : 
 IDENTIFICADOR        : 1 33
@@ -90,8 +89,8 @@ MULT                 : 5
 NOT                  : 27 30
 NUMERAL              : 34
 OR                   : 26 29
-PARDER               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30
-PARIZQ               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30
+PARDER               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30 35
+PARIZQ               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30 35
 PLUSPLUS             : 
 POTENCIA             : 7
 PUNTOCOMA            : 
@@ -108,7 +107,7 @@ error                :
 Nonterminals, with rules where they appear
 
 declaracion          : 0
-expresion            : 1 2 3 3 4 4 5 5 6 6 7 7 8 8 9 10 11 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 32 34
+expresion            : 1 2 3 3 4 4 5 5 6 6 7 7 8 8 9 10 11 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 32 34 35
 
 Parsing method: LALR
 
@@ -149,6 +148,7 @@ state 0
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     IDENTIFICADOR   shift and go to state 2
     RESTA           shift and go to state 4
@@ -158,6 +158,7 @@ state 0
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
     declaracion                    shift and go to state 1
     expresion                      shift and go to state 3
@@ -173,7 +174,7 @@ state 2
     (1) declaracion -> IDENTIFICADOR . ASIGNAR expresion
     (33) expresion -> IDENTIFICADOR .
 
-    ASIGNAR         shift and go to state 11
+    ASIGNAR         shift and go to state 12
     SUMA            reduce using rule 33 (expresion -> IDENTIFICADOR .)
     RESTA           reduce using rule 33 (expresion -> IDENTIFICADOR .)
     MULT            reduce using rule 33 (expresion -> IDENTIFICADOR .)
@@ -212,21 +213,21 @@ state 3
     (27) expresion -> expresion . NOT expresion
 
     $end            reduce using rule 2 (declaracion -> expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
 state 4
@@ -264,6 +265,7 @@ state 4
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -271,10 +273,11 @@ state 4
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 27
+    expresion                      shift and go to state 28
 
 state 5
 
@@ -320,6 +323,7 @@ state 5
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -327,10 +331,11 @@ state 5
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 29
+    expresion                      shift and go to state 30
 
 state 6
 
@@ -367,6 +372,7 @@ state 6
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -374,10 +380,11 @@ state 6
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 30
+    expresion                      shift and go to state 31
 
 state 7
 
@@ -414,6 +421,7 @@ state 7
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -421,10 +429,11 @@ state 7
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 31
+    expresion                      shift and go to state 32
 
 state 8
 
@@ -487,6 +496,7 @@ state 9
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -494,10 +504,11 @@ state 9
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 32
+    expresion                      shift and go to state 33
 
 state 10
 
@@ -534,6 +545,7 @@ state 10
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -541,12 +553,20 @@ state 10
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 33
+    expresion                      shift and go to state 34
 
 state 11
+
+    (35) expresion -> ARI . PARIZQ expresion PARDER DPUNTOS
+
+    PARIZQ          shift and go to state 35
+
+
+state 12
 
     (1) declaracion -> IDENTIFICADOR ASIGNAR . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -581,6 +601,7 @@ state 11
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -588,12 +609,13 @@ state 11
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 34
+    expresion                      shift and go to state 36
 
-state 12
+state 13
 
     (3) expresion -> expresion SUMA . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -628,6 +650,7 @@ state 12
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -635,12 +658,13 @@ state 12
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 35
+    expresion                      shift and go to state 37
 
-state 13
+state 14
 
     (4) expresion -> expresion RESTA . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -675,6 +699,7 @@ state 13
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -682,12 +707,13 @@ state 13
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 36
+    expresion                      shift and go to state 38
 
-state 14
+state 15
 
     (5) expresion -> expresion MULT . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -722,6 +748,7 @@ state 14
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -729,12 +756,13 @@ state 14
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 37
+    expresion                      shift and go to state 39
 
-state 15
+state 16
 
     (6) expresion -> expresion DIV . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -769,6 +797,7 @@ state 15
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -776,12 +805,13 @@ state 15
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 38
+    expresion                      shift and go to state 40
 
-state 16
+state 17
 
     (7) expresion -> expresion POTENCIA . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -816,6 +846,7 @@ state 16
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -823,12 +854,13 @@ state 16
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 39
+    expresion                      shift and go to state 41
 
-state 17
+state 18
 
     (8) expresion -> expresion MODULO . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -863,6 +895,7 @@ state 17
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -870,12 +903,13 @@ state 17
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 40
+    expresion                      shift and go to state 42
 
-state 18
+state 19
 
     (13) expresion -> expresion MENORQUE . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -910,6 +944,7 @@ state 18
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -917,12 +952,13 @@ state 18
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 41
+    expresion                      shift and go to state 43
 
-state 19
+state 20
 
     (14) expresion -> expresion MAYORQUE . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -957,6 +993,7 @@ state 19
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -964,12 +1001,13 @@ state 19
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 42
+    expresion                      shift and go to state 44
 
-state 20
+state 21
 
     (15) expresion -> expresion MENORIGUAL . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1004,6 +1042,7 @@ state 20
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1011,12 +1050,13 @@ state 20
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 43
+    expresion                      shift and go to state 45
 
-state 21
+state 22
 
     (16) expresion -> expresion MAYORIGUAL . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1051,6 +1091,7 @@ state 21
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1058,12 +1099,13 @@ state 21
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 44
+    expresion                      shift and go to state 46
 
-state 22
+state 23
 
     (17) expresion -> expresion IGUAL . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1098,6 +1140,7 @@ state 22
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1105,12 +1148,13 @@ state 22
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 45
+    expresion                      shift and go to state 47
 
-state 23
+state 24
 
     (18) expresion -> expresion DISTINTO . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1145,6 +1189,7 @@ state 23
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1152,12 +1197,13 @@ state 23
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 46
+    expresion                      shift and go to state 48
 
-state 24
+state 25
 
     (25) expresion -> expresion AND . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1192,6 +1238,7 @@ state 24
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1199,12 +1246,13 @@ state 24
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 47
+    expresion                      shift and go to state 49
 
-state 25
+state 26
 
     (26) expresion -> expresion OR . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1239,6 +1287,7 @@ state 25
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1246,12 +1295,13 @@ state 25
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 48
+    expresion                      shift and go to state 50
 
-state 26
+state 27
 
     (27) expresion -> expresion NOT . expresion
     (3) expresion -> . expresion SUMA expresion
@@ -1286,6 +1336,7 @@ state 26
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -1293,12 +1344,13 @@ state 26
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 49
+    expresion                      shift and go to state 51
 
-state 27
+state 28
 
     (9) expresion -> RESTA expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1338,24 +1390,24 @@ state 27
     CORDER          reduce using rule 9 (expresion -> RESTA expresion .)
     COMDOB          reduce using rule 9 (expresion -> RESTA expresion .)
 
-  ! SUMA            [ shift and go to state 12 ]
-  ! RESTA           [ shift and go to state 13 ]
-  ! MULT            [ shift and go to state 14 ]
-  ! DIV             [ shift and go to state 15 ]
-  ! POTENCIA        [ shift and go to state 16 ]
-  ! MODULO          [ shift and go to state 17 ]
-  ! MENORQUE        [ shift and go to state 18 ]
-  ! MAYORQUE        [ shift and go to state 19 ]
-  ! MENORIGUAL      [ shift and go to state 20 ]
-  ! MAYORIGUAL      [ shift and go to state 21 ]
-  ! IGUAL           [ shift and go to state 22 ]
-  ! DISTINTO        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 24 ]
-  ! OR              [ shift and go to state 25 ]
-  ! NOT             [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 13 ]
+  ! RESTA           [ shift and go to state 14 ]
+  ! MULT            [ shift and go to state 15 ]
+  ! DIV             [ shift and go to state 16 ]
+  ! POTENCIA        [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 18 ]
+  ! MENORQUE        [ shift and go to state 19 ]
+  ! MAYORQUE        [ shift and go to state 20 ]
+  ! MENORIGUAL      [ shift and go to state 21 ]
+  ! MAYORIGUAL      [ shift and go to state 22 ]
+  ! IGUAL           [ shift and go to state 23 ]
+  ! DISTINTO        [ shift and go to state 24 ]
+  ! AND             [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 26 ]
+  ! NOT             [ shift and go to state 27 ]
 
 
-state 28
+state 29
 
     (33) expresion -> IDENTIFICADOR .
 
@@ -1381,7 +1433,7 @@ state 28
     COMDOB          reduce using rule 33 (expresion -> IDENTIFICADOR .)
 
 
-state 29
+state 30
 
     (10) expresion -> PARIZQ expresion . PARDER
     (19) expresion -> PARIZQ expresion . PARDER MENORQUE PARIZQ expresion PARDER
@@ -1409,25 +1461,25 @@ state 29
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 50
-    AND             shift and go to state 51
-    OR              shift and go to state 52
-    NOT             shift and go to state 53
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
+    PARDER          shift and go to state 52
+    AND             shift and go to state 53
+    OR              shift and go to state 54
+    NOT             shift and go to state 55
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
 
 
-state 30
+state 31
 
     (11) expresion -> LLAIZQ expresion . LLADER
     (3) expresion -> expresion . SUMA expresion
@@ -1446,25 +1498,25 @@ state 30
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    LLADER          shift and go to state 54
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    LLADER          shift and go to state 56
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 31
+state 32
 
     (12) expresion -> CORIZQ expresion . CORDER
     (3) expresion -> expresion . SUMA expresion
@@ -1483,25 +1535,25 @@ state 31
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    CORDER          shift and go to state 55
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    CORDER          shift and go to state 57
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 32
+state 33
 
     (32) expresion -> COMDOB expresion . COMDOB
     (3) expresion -> expresion . SUMA expresion
@@ -1520,25 +1572,25 @@ state 32
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    COMDOB          shift and go to state 56
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    COMDOB          shift and go to state 58
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 33
+state 34
 
     (34) expresion -> NUMERAL expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1577,21 +1629,21 @@ state 33
     LLADER          reduce using rule 34 (expresion -> NUMERAL expresion .)
     CORDER          reduce using rule 34 (expresion -> NUMERAL expresion .)
     COMDOB          reduce using rule 34 (expresion -> NUMERAL expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 34 (expresion -> NUMERAL expresion .) ]
   ! RESTA           [ reduce using rule 34 (expresion -> NUMERAL expresion .) ]
@@ -1610,7 +1662,56 @@ state 33
   ! NOT             [ reduce using rule 34 (expresion -> NUMERAL expresion .) ]
 
 
-state 34
+state 35
+
+    (35) expresion -> ARI PARIZQ . expresion PARDER DPUNTOS
+    (3) expresion -> . expresion SUMA expresion
+    (4) expresion -> . expresion RESTA expresion
+    (5) expresion -> . expresion MULT expresion
+    (6) expresion -> . expresion DIV expresion
+    (7) expresion -> . expresion POTENCIA expresion
+    (8) expresion -> . expresion MODULO expresion
+    (9) expresion -> . RESTA expresion
+    (10) expresion -> . PARIZQ expresion PARDER
+    (11) expresion -> . LLAIZQ expresion LLADER
+    (12) expresion -> . CORIZQ expresion CORDER
+    (13) expresion -> . expresion MENORQUE expresion
+    (14) expresion -> . expresion MAYORQUE expresion
+    (15) expresion -> . expresion MENORIGUAL expresion
+    (16) expresion -> . expresion MAYORIGUAL expresion
+    (17) expresion -> . expresion IGUAL expresion
+    (18) expresion -> . expresion DISTINTO expresion
+    (19) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (20) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (21) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (25) expresion -> . expresion AND expresion
+    (26) expresion -> . expresion OR expresion
+    (27) expresion -> . expresion NOT expresion
+    (28) expresion -> . PARIZQ expresion AND expresion PARDER
+    (29) expresion -> . PARIZQ expresion OR expresion PARDER
+    (30) expresion -> . PARIZQ expresion NOT expresion PARDER
+    (31) expresion -> . ENTERO
+    (32) expresion -> . COMDOB expresion COMDOB
+    (33) expresion -> . IDENTIFICADOR
+    (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
+
+    RESTA           shift and go to state 4
+    PARIZQ          shift and go to state 5
+    LLAIZQ          shift and go to state 6
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 8
+    COMDOB          shift and go to state 9
+    IDENTIFICADOR   shift and go to state 29
+    NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
+
+    expresion                      shift and go to state 59
+
+state 36
 
     (1) declaracion -> IDENTIFICADOR ASIGNAR expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1630,24 +1731,24 @@ state 34
     (27) expresion -> expresion . NOT expresion
 
     $end            reduce using rule 1 (declaracion -> IDENTIFICADOR ASIGNAR expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 35
+state 37
 
     (3) expresion -> expresion SUMA expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1684,27 +1785,27 @@ state 35
     LLADER          reduce using rule 3 (expresion -> expresion SUMA expresion .)
     CORDER          reduce using rule 3 (expresion -> expresion SUMA expresion .)
     COMDOB          reduce using rule 3 (expresion -> expresion SUMA expresion .)
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
 
   ! MULT            [ reduce using rule 3 (expresion -> expresion SUMA expresion .) ]
   ! DIV             [ reduce using rule 3 (expresion -> expresion SUMA expresion .) ]
-  ! SUMA            [ shift and go to state 12 ]
-  ! RESTA           [ shift and go to state 13 ]
-  ! POTENCIA        [ shift and go to state 16 ]
-  ! MODULO          [ shift and go to state 17 ]
-  ! MENORQUE        [ shift and go to state 18 ]
-  ! MAYORQUE        [ shift and go to state 19 ]
-  ! MENORIGUAL      [ shift and go to state 20 ]
-  ! MAYORIGUAL      [ shift and go to state 21 ]
-  ! IGUAL           [ shift and go to state 22 ]
-  ! DISTINTO        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 24 ]
-  ! OR              [ shift and go to state 25 ]
-  ! NOT             [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 13 ]
+  ! RESTA           [ shift and go to state 14 ]
+  ! POTENCIA        [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 18 ]
+  ! MENORQUE        [ shift and go to state 19 ]
+  ! MAYORQUE        [ shift and go to state 20 ]
+  ! MENORIGUAL      [ shift and go to state 21 ]
+  ! MAYORIGUAL      [ shift and go to state 22 ]
+  ! IGUAL           [ shift and go to state 23 ]
+  ! DISTINTO        [ shift and go to state 24 ]
+  ! AND             [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 26 ]
+  ! NOT             [ shift and go to state 27 ]
 
 
-state 36
+state 38
 
     (4) expresion -> expresion RESTA expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1741,27 +1842,27 @@ state 36
     LLADER          reduce using rule 4 (expresion -> expresion RESTA expresion .)
     CORDER          reduce using rule 4 (expresion -> expresion RESTA expresion .)
     COMDOB          reduce using rule 4 (expresion -> expresion RESTA expresion .)
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
 
   ! MULT            [ reduce using rule 4 (expresion -> expresion RESTA expresion .) ]
   ! DIV             [ reduce using rule 4 (expresion -> expresion RESTA expresion .) ]
-  ! SUMA            [ shift and go to state 12 ]
-  ! RESTA           [ shift and go to state 13 ]
-  ! POTENCIA        [ shift and go to state 16 ]
-  ! MODULO          [ shift and go to state 17 ]
-  ! MENORQUE        [ shift and go to state 18 ]
-  ! MAYORQUE        [ shift and go to state 19 ]
-  ! MENORIGUAL      [ shift and go to state 20 ]
-  ! MAYORIGUAL      [ shift and go to state 21 ]
-  ! IGUAL           [ shift and go to state 22 ]
-  ! DISTINTO        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 24 ]
-  ! OR              [ shift and go to state 25 ]
-  ! NOT             [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 13 ]
+  ! RESTA           [ shift and go to state 14 ]
+  ! POTENCIA        [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 18 ]
+  ! MENORQUE        [ shift and go to state 19 ]
+  ! MAYORQUE        [ shift and go to state 20 ]
+  ! MENORIGUAL      [ shift and go to state 21 ]
+  ! MAYORIGUAL      [ shift and go to state 22 ]
+  ! IGUAL           [ shift and go to state 23 ]
+  ! DISTINTO        [ shift and go to state 24 ]
+  ! AND             [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 26 ]
+  ! NOT             [ shift and go to state 27 ]
 
 
-state 37
+state 39
 
     (5) expresion -> expresion MULT expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1801,24 +1902,24 @@ state 37
     CORDER          reduce using rule 5 (expresion -> expresion MULT expresion .)
     COMDOB          reduce using rule 5 (expresion -> expresion MULT expresion .)
 
-  ! SUMA            [ shift and go to state 12 ]
-  ! RESTA           [ shift and go to state 13 ]
-  ! MULT            [ shift and go to state 14 ]
-  ! DIV             [ shift and go to state 15 ]
-  ! POTENCIA        [ shift and go to state 16 ]
-  ! MODULO          [ shift and go to state 17 ]
-  ! MENORQUE        [ shift and go to state 18 ]
-  ! MAYORQUE        [ shift and go to state 19 ]
-  ! MENORIGUAL      [ shift and go to state 20 ]
-  ! MAYORIGUAL      [ shift and go to state 21 ]
-  ! IGUAL           [ shift and go to state 22 ]
-  ! DISTINTO        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 24 ]
-  ! OR              [ shift and go to state 25 ]
-  ! NOT             [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 13 ]
+  ! RESTA           [ shift and go to state 14 ]
+  ! MULT            [ shift and go to state 15 ]
+  ! DIV             [ shift and go to state 16 ]
+  ! POTENCIA        [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 18 ]
+  ! MENORQUE        [ shift and go to state 19 ]
+  ! MAYORQUE        [ shift and go to state 20 ]
+  ! MENORIGUAL      [ shift and go to state 21 ]
+  ! MAYORIGUAL      [ shift and go to state 22 ]
+  ! IGUAL           [ shift and go to state 23 ]
+  ! DISTINTO        [ shift and go to state 24 ]
+  ! AND             [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 26 ]
+  ! NOT             [ shift and go to state 27 ]
 
 
-state 38
+state 40
 
     (6) expresion -> expresion DIV expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1858,24 +1959,24 @@ state 38
     CORDER          reduce using rule 6 (expresion -> expresion DIV expresion .)
     COMDOB          reduce using rule 6 (expresion -> expresion DIV expresion .)
 
-  ! SUMA            [ shift and go to state 12 ]
-  ! RESTA           [ shift and go to state 13 ]
-  ! MULT            [ shift and go to state 14 ]
-  ! DIV             [ shift and go to state 15 ]
-  ! POTENCIA        [ shift and go to state 16 ]
-  ! MODULO          [ shift and go to state 17 ]
-  ! MENORQUE        [ shift and go to state 18 ]
-  ! MAYORQUE        [ shift and go to state 19 ]
-  ! MENORIGUAL      [ shift and go to state 20 ]
-  ! MAYORIGUAL      [ shift and go to state 21 ]
-  ! IGUAL           [ shift and go to state 22 ]
-  ! DISTINTO        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 24 ]
-  ! OR              [ shift and go to state 25 ]
-  ! NOT             [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 13 ]
+  ! RESTA           [ shift and go to state 14 ]
+  ! MULT            [ shift and go to state 15 ]
+  ! DIV             [ shift and go to state 16 ]
+  ! POTENCIA        [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 18 ]
+  ! MENORQUE        [ shift and go to state 19 ]
+  ! MAYORQUE        [ shift and go to state 20 ]
+  ! MENORIGUAL      [ shift and go to state 21 ]
+  ! MAYORIGUAL      [ shift and go to state 22 ]
+  ! IGUAL           [ shift and go to state 23 ]
+  ! DISTINTO        [ shift and go to state 24 ]
+  ! AND             [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 26 ]
+  ! NOT             [ shift and go to state 27 ]
 
 
-state 39
+state 41
 
     (7) expresion -> expresion POTENCIA expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1914,21 +2015,21 @@ state 39
     LLADER          reduce using rule 7 (expresion -> expresion POTENCIA expresion .)
     CORDER          reduce using rule 7 (expresion -> expresion POTENCIA expresion .)
     COMDOB          reduce using rule 7 (expresion -> expresion POTENCIA expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 7 (expresion -> expresion POTENCIA expresion .) ]
   ! RESTA           [ reduce using rule 7 (expresion -> expresion POTENCIA expresion .) ]
@@ -1947,7 +2048,7 @@ state 39
   ! NOT             [ reduce using rule 7 (expresion -> expresion POTENCIA expresion .) ]
 
 
-state 40
+state 42
 
     (8) expresion -> expresion MODULO expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -1986,21 +2087,21 @@ state 40
     LLADER          reduce using rule 8 (expresion -> expresion MODULO expresion .)
     CORDER          reduce using rule 8 (expresion -> expresion MODULO expresion .)
     COMDOB          reduce using rule 8 (expresion -> expresion MODULO expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 8 (expresion -> expresion MODULO expresion .) ]
   ! RESTA           [ reduce using rule 8 (expresion -> expresion MODULO expresion .) ]
@@ -2019,7 +2120,7 @@ state 40
   ! NOT             [ reduce using rule 8 (expresion -> expresion MODULO expresion .) ]
 
 
-state 41
+state 43
 
     (13) expresion -> expresion MENORQUE expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2058,21 +2159,21 @@ state 41
     LLADER          reduce using rule 13 (expresion -> expresion MENORQUE expresion .)
     CORDER          reduce using rule 13 (expresion -> expresion MENORQUE expresion .)
     COMDOB          reduce using rule 13 (expresion -> expresion MENORQUE expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 13 (expresion -> expresion MENORQUE expresion .) ]
   ! RESTA           [ reduce using rule 13 (expresion -> expresion MENORQUE expresion .) ]
@@ -2091,7 +2192,7 @@ state 41
   ! NOT             [ reduce using rule 13 (expresion -> expresion MENORQUE expresion .) ]
 
 
-state 42
+state 44
 
     (14) expresion -> expresion MAYORQUE expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2130,21 +2231,21 @@ state 42
     LLADER          reduce using rule 14 (expresion -> expresion MAYORQUE expresion .)
     CORDER          reduce using rule 14 (expresion -> expresion MAYORQUE expresion .)
     COMDOB          reduce using rule 14 (expresion -> expresion MAYORQUE expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 14 (expresion -> expresion MAYORQUE expresion .) ]
   ! RESTA           [ reduce using rule 14 (expresion -> expresion MAYORQUE expresion .) ]
@@ -2163,7 +2264,7 @@ state 42
   ! NOT             [ reduce using rule 14 (expresion -> expresion MAYORQUE expresion .) ]
 
 
-state 43
+state 45
 
     (15) expresion -> expresion MENORIGUAL expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2202,21 +2303,21 @@ state 43
     LLADER          reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .)
     CORDER          reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .)
     COMDOB          reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .) ]
   ! RESTA           [ reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .) ]
@@ -2235,7 +2336,7 @@ state 43
   ! NOT             [ reduce using rule 15 (expresion -> expresion MENORIGUAL expresion .) ]
 
 
-state 44
+state 46
 
     (16) expresion -> expresion MAYORIGUAL expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2274,21 +2375,21 @@ state 44
     LLADER          reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .)
     CORDER          reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .)
     COMDOB          reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .) ]
   ! RESTA           [ reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .) ]
@@ -2307,7 +2408,7 @@ state 44
   ! NOT             [ reduce using rule 16 (expresion -> expresion MAYORIGUAL expresion .) ]
 
 
-state 45
+state 47
 
     (17) expresion -> expresion IGUAL expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2346,21 +2447,21 @@ state 45
     LLADER          reduce using rule 17 (expresion -> expresion IGUAL expresion .)
     CORDER          reduce using rule 17 (expresion -> expresion IGUAL expresion .)
     COMDOB          reduce using rule 17 (expresion -> expresion IGUAL expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 17 (expresion -> expresion IGUAL expresion .) ]
   ! RESTA           [ reduce using rule 17 (expresion -> expresion IGUAL expresion .) ]
@@ -2379,7 +2480,7 @@ state 45
   ! NOT             [ reduce using rule 17 (expresion -> expresion IGUAL expresion .) ]
 
 
-state 46
+state 48
 
     (18) expresion -> expresion DISTINTO expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2418,21 +2519,21 @@ state 46
     LLADER          reduce using rule 18 (expresion -> expresion DISTINTO expresion .)
     CORDER          reduce using rule 18 (expresion -> expresion DISTINTO expresion .)
     COMDOB          reduce using rule 18 (expresion -> expresion DISTINTO expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 18 (expresion -> expresion DISTINTO expresion .) ]
   ! RESTA           [ reduce using rule 18 (expresion -> expresion DISTINTO expresion .) ]
@@ -2451,7 +2552,7 @@ state 46
   ! NOT             [ reduce using rule 18 (expresion -> expresion DISTINTO expresion .) ]
 
 
-state 47
+state 49
 
     (25) expresion -> expresion AND expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2490,21 +2591,21 @@ state 47
     LLADER          reduce using rule 25 (expresion -> expresion AND expresion .)
     CORDER          reduce using rule 25 (expresion -> expresion AND expresion .)
     COMDOB          reduce using rule 25 (expresion -> expresion AND expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
   ! RESTA           [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
@@ -2523,7 +2624,7 @@ state 47
   ! NOT             [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
 
 
-state 48
+state 50
 
     (26) expresion -> expresion OR expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2562,21 +2663,21 @@ state 48
     LLADER          reduce using rule 26 (expresion -> expresion OR expresion .)
     CORDER          reduce using rule 26 (expresion -> expresion OR expresion .)
     COMDOB          reduce using rule 26 (expresion -> expresion OR expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
   ! RESTA           [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
@@ -2595,7 +2696,7 @@ state 48
   ! NOT             [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
 
 
-state 49
+state 51
 
     (27) expresion -> expresion NOT expresion .
     (3) expresion -> expresion . SUMA expresion
@@ -2634,21 +2735,21 @@ state 49
     LLADER          reduce using rule 27 (expresion -> expresion NOT expresion .)
     CORDER          reduce using rule 27 (expresion -> expresion NOT expresion .)
     COMDOB          reduce using rule 27 (expresion -> expresion NOT expresion .)
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! SUMA            [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
   ! RESTA           [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
@@ -2667,7 +2768,7 @@ state 49
   ! NOT             [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
 
 
-state 50
+state 52
 
     (10) expresion -> PARIZQ expresion PARDER .
     (19) expresion -> PARIZQ expresion PARDER . MENORQUE PARIZQ expresion PARDER
@@ -2697,12 +2798,12 @@ state 50
     LLADER          reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
     CORDER          reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
     COMDOB          reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    MENORQUE        shift and go to state 57
-    MAYORQUE        shift and go to state 58
-    MENORIGUAL      shift and go to state 59
-    MAYORIGUAL      shift and go to state 60
-    IGUAL           shift and go to state 61
-    DISTINTO        shift and go to state 62
+    MENORQUE        shift and go to state 60
+    MAYORQUE        shift and go to state 61
+    MENORIGUAL      shift and go to state 62
+    MAYORIGUAL      shift and go to state 63
+    IGUAL           shift and go to state 64
+    DISTINTO        shift and go to state 65
 
   ! MENORQUE        [ reduce using rule 10 (expresion -> PARIZQ expresion PARDER .) ]
   ! MAYORQUE        [ reduce using rule 10 (expresion -> PARIZQ expresion PARDER .) ]
@@ -2712,7 +2813,7 @@ state 50
   ! DISTINTO        [ reduce using rule 10 (expresion -> PARIZQ expresion PARDER .) ]
 
 
-state 51
+state 53
 
     (28) expresion -> PARIZQ expresion AND . expresion PARDER
     (25) expresion -> expresion AND . expresion
@@ -2748,6 +2849,7 @@ state 51
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -2755,12 +2857,13 @@ state 51
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 63
+    expresion                      shift and go to state 66
 
-state 52
+state 54
 
     (29) expresion -> PARIZQ expresion OR . expresion PARDER
     (26) expresion -> expresion OR . expresion
@@ -2796,6 +2899,7 @@ state 52
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -2803,12 +2907,13 @@ state 52
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 64
+    expresion                      shift and go to state 67
 
-state 53
+state 55
 
     (30) expresion -> PARIZQ expresion NOT . expresion PARDER
     (27) expresion -> expresion NOT . expresion
@@ -2844,6 +2949,7 @@ state 53
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -2851,12 +2957,13 @@ state 53
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 65
+    expresion                      shift and go to state 68
 
-state 54
+state 56
 
     (11) expresion -> LLAIZQ expresion LLADER .
 
@@ -2882,7 +2989,7 @@ state 54
     COMDOB          reduce using rule 11 (expresion -> LLAIZQ expresion LLADER .)
 
 
-state 55
+state 57
 
     (12) expresion -> CORIZQ expresion CORDER .
 
@@ -2908,7 +3015,7 @@ state 55
     COMDOB          reduce using rule 12 (expresion -> CORIZQ expresion CORDER .)
 
 
-state 56
+state 58
 
     (32) expresion -> COMDOB expresion COMDOB .
 
@@ -2934,49 +3041,86 @@ state 56
     COMDOB          reduce using rule 32 (expresion -> COMDOB expresion COMDOB .)
 
 
-state 57
-
-    (19) expresion -> PARIZQ expresion PARDER MENORQUE . PARIZQ expresion PARDER
-
-    PARIZQ          shift and go to state 66
-
-
-state 58
-
-    (20) expresion -> PARIZQ expresion PARDER MAYORQUE . PARIZQ expresion PARDER
-
-    PARIZQ          shift and go to state 67
-
-
 state 59
 
-    (21) expresion -> PARIZQ expresion PARDER MENORIGUAL . PARIZQ expresion PARDER
+    (35) expresion -> ARI PARIZQ expresion . PARDER DPUNTOS
+    (3) expresion -> expresion . SUMA expresion
+    (4) expresion -> expresion . RESTA expresion
+    (5) expresion -> expresion . MULT expresion
+    (6) expresion -> expresion . DIV expresion
+    (7) expresion -> expresion . POTENCIA expresion
+    (8) expresion -> expresion . MODULO expresion
+    (13) expresion -> expresion . MENORQUE expresion
+    (14) expresion -> expresion . MAYORQUE expresion
+    (15) expresion -> expresion . MENORIGUAL expresion
+    (16) expresion -> expresion . MAYORIGUAL expresion
+    (17) expresion -> expresion . IGUAL expresion
+    (18) expresion -> expresion . DISTINTO expresion
+    (25) expresion -> expresion . AND expresion
+    (26) expresion -> expresion . OR expresion
+    (27) expresion -> expresion . NOT expresion
 
-    PARIZQ          shift and go to state 68
+    PARDER          shift and go to state 69
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
 state 60
 
-    (22) expresion -> PARIZQ expresion PARDER MAYORIGUAL . PARIZQ expresion PARDER
-
-    PARIZQ          shift and go to state 69
-
-
-state 61
-
-    (23) expresion -> PARIZQ expresion PARDER IGUAL . PARIZQ expresion PARDER
+    (19) expresion -> PARIZQ expresion PARDER MENORQUE . PARIZQ expresion PARDER
 
     PARIZQ          shift and go to state 70
 
 
-state 62
+state 61
 
-    (24) expresion -> PARIZQ expresion PARDER DISTINTO . PARIZQ expresion PARDER
+    (20) expresion -> PARIZQ expresion PARDER MAYORQUE . PARIZQ expresion PARDER
 
     PARIZQ          shift and go to state 71
 
 
+state 62
+
+    (21) expresion -> PARIZQ expresion PARDER MENORIGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 72
+
+
 state 63
+
+    (22) expresion -> PARIZQ expresion PARDER MAYORIGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 73
+
+
+state 64
+
+    (23) expresion -> PARIZQ expresion PARDER IGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 74
+
+
+state 65
+
+    (24) expresion -> PARIZQ expresion PARDER DISTINTO . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 75
+
+
+state 66
 
     (28) expresion -> PARIZQ expresion AND expresion . PARDER
     (25) expresion -> expresion AND expresion .
@@ -3012,22 +3156,22 @@ state 63
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for NOT resolved as shift
-    PARDER          shift and go to state 72
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 76
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! PARDER          [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
   ! AND             [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
@@ -3047,7 +3191,7 @@ state 63
   ! DISTINTO        [ reduce using rule 25 (expresion -> expresion AND expresion .) ]
 
 
-state 64
+state 67
 
     (29) expresion -> PARIZQ expresion OR expresion . PARDER
     (26) expresion -> expresion OR expresion .
@@ -3083,22 +3227,22 @@ state 64
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for NOT resolved as shift
-    PARDER          shift and go to state 73
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 77
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! PARDER          [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
   ! AND             [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
@@ -3118,7 +3262,7 @@ state 64
   ! DISTINTO        [ reduce using rule 26 (expresion -> expresion OR expresion .) ]
 
 
-state 65
+state 68
 
     (30) expresion -> PARIZQ expresion NOT expresion . PARDER
     (27) expresion -> expresion NOT expresion .
@@ -3154,22 +3298,22 @@ state 65
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for NOT resolved as shift
-    PARDER          shift and go to state 74
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 78
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
   ! PARDER          [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
   ! AND             [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
@@ -3189,7 +3333,14 @@ state 65
   ! DISTINTO        [ reduce using rule 27 (expresion -> expresion NOT expresion .) ]
 
 
-state 66
+state 69
+
+    (35) expresion -> ARI PARIZQ expresion PARDER . DPUNTOS
+
+    DPUNTOS         shift and go to state 79
+
+
+state 70
 
     (19) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3224,6 +3375,7 @@ state 66
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3231,12 +3383,13 @@ state 66
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 75
+    expresion                      shift and go to state 80
 
-state 67
+state 71
 
     (20) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3271,6 +3424,7 @@ state 67
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3278,12 +3432,13 @@ state 67
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 76
+    expresion                      shift and go to state 81
 
-state 68
+state 72
 
     (21) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3318,6 +3473,7 @@ state 68
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3325,12 +3481,13 @@ state 68
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 77
+    expresion                      shift and go to state 82
 
-state 69
+state 73
 
     (22) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3365,6 +3522,7 @@ state 69
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3372,12 +3530,13 @@ state 69
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 78
+    expresion                      shift and go to state 83
 
-state 70
+state 74
 
     (23) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3412,6 +3571,7 @@ state 70
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3419,12 +3579,13 @@ state 70
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 79
+    expresion                      shift and go to state 84
 
-state 71
+state 75
 
     (24) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ . expresion PARDER
     (3) expresion -> . expresion SUMA expresion
@@ -3459,6 +3620,7 @@ state 71
     (32) expresion -> . COMDOB expresion COMDOB
     (33) expresion -> . IDENTIFICADOR
     (34) expresion -> . NUMERAL expresion
+    (35) expresion -> . ARI PARIZQ expresion PARDER DPUNTOS
 
     RESTA           shift and go to state 4
     PARIZQ          shift and go to state 5
@@ -3466,12 +3628,13 @@ state 71
     CORIZQ          shift and go to state 7
     ENTERO          shift and go to state 8
     COMDOB          shift and go to state 9
-    IDENTIFICADOR   shift and go to state 28
+    IDENTIFICADOR   shift and go to state 29
     NUMERAL         shift and go to state 10
+    ARI             shift and go to state 11
 
-    expresion                      shift and go to state 80
+    expresion                      shift and go to state 85
 
-state 72
+state 76
 
     (28) expresion -> PARIZQ expresion AND expresion PARDER .
 
@@ -3497,7 +3660,7 @@ state 72
     COMDOB          reduce using rule 28 (expresion -> PARIZQ expresion AND expresion PARDER .)
 
 
-state 73
+state 77
 
     (29) expresion -> PARIZQ expresion OR expresion PARDER .
 
@@ -3523,7 +3686,7 @@ state 73
     COMDOB          reduce using rule 29 (expresion -> PARIZQ expresion OR expresion PARDER .)
 
 
-state 74
+state 78
 
     (30) expresion -> PARIZQ expresion NOT expresion PARDER .
 
@@ -3549,7 +3712,33 @@ state 74
     COMDOB          reduce using rule 30 (expresion -> PARIZQ expresion NOT expresion PARDER .)
 
 
-state 75
+state 79
+
+    (35) expresion -> ARI PARIZQ expresion PARDER DPUNTOS .
+
+    SUMA            reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    RESTA           reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MULT            reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    DIV             reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    POTENCIA        reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MODULO          reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MENORQUE        reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MAYORQUE        reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MENORIGUAL      reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    MAYORIGUAL      reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    IGUAL           reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    DISTINTO        reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    AND             reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    OR              reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    NOT             reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    $end            reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    PARDER          reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    LLADER          reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    CORDER          reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+    COMDOB          reduce using rule 35 (expresion -> ARI PARIZQ expresion PARDER DPUNTOS .)
+
+
+state 80
 
     (19) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3568,25 +3757,25 @@ state 75
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 81
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 86
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 76
+state 81
 
     (20) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3605,25 +3794,25 @@ state 76
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 82
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 87
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 77
+state 82
 
     (21) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3642,25 +3831,25 @@ state 77
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 83
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 88
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 78
+state 83
 
     (22) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3679,25 +3868,25 @@ state 78
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 84
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 89
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 79
+state 84
 
     (23) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3716,25 +3905,25 @@ state 79
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 85
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 90
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 80
+state 85
 
     (24) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion . PARDER
     (3) expresion -> expresion . SUMA expresion
@@ -3753,25 +3942,25 @@ state 80
     (26) expresion -> expresion . OR expresion
     (27) expresion -> expresion . NOT expresion
 
-    PARDER          shift and go to state 86
-    SUMA            shift and go to state 12
-    RESTA           shift and go to state 13
-    MULT            shift and go to state 14
-    DIV             shift and go to state 15
-    POTENCIA        shift and go to state 16
-    MODULO          shift and go to state 17
-    MENORQUE        shift and go to state 18
-    MAYORQUE        shift and go to state 19
-    MENORIGUAL      shift and go to state 20
-    MAYORIGUAL      shift and go to state 21
-    IGUAL           shift and go to state 22
-    DISTINTO        shift and go to state 23
-    AND             shift and go to state 24
-    OR              shift and go to state 25
-    NOT             shift and go to state 26
+    PARDER          shift and go to state 91
+    SUMA            shift and go to state 13
+    RESTA           shift and go to state 14
+    MULT            shift and go to state 15
+    DIV             shift and go to state 16
+    POTENCIA        shift and go to state 17
+    MODULO          shift and go to state 18
+    MENORQUE        shift and go to state 19
+    MAYORQUE        shift and go to state 20
+    MENORIGUAL      shift and go to state 21
+    MAYORIGUAL      shift and go to state 22
+    IGUAL           shift and go to state 23
+    DISTINTO        shift and go to state 24
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+    NOT             shift and go to state 27
 
 
-state 81
+state 86
 
     (19) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .
 
@@ -3797,7 +3986,7 @@ state 81
     COMDOB          reduce using rule 19 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
 
 
-state 82
+state 87
 
     (20) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .
 
@@ -3823,7 +4012,7 @@ state 82
     COMDOB          reduce using rule 20 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
 
 
-state 83
+state 88
 
     (21) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .
 
@@ -3849,7 +4038,7 @@ state 83
     COMDOB          reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
 
 
-state 84
+state 89
 
     (22) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .
 
@@ -3875,7 +4064,7 @@ state 84
     COMDOB          reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
 
 
-state 85
+state 90
 
     (23) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .
 
@@ -3901,7 +4090,7 @@ state 85
     COMDOB          reduce using rule 23 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
 
 
-state 86
+state 91
 
     (24) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .
 
@@ -3929,51 +4118,21 @@ state 86
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SUMA in state 33 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 33 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 33 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 33 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 33 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 33 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 33 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 33 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 33 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 33 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 33 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 33 resolved as shift
-WARNING: shift/reduce conflict for AND in state 33 resolved as shift
-WARNING: shift/reduce conflict for OR in state 33 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 33 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 39 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 39 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 39 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 39 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 39 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 39 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 39 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 39 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 39 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 39 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 39 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 39 resolved as shift
-WARNING: shift/reduce conflict for AND in state 39 resolved as shift
-WARNING: shift/reduce conflict for OR in state 39 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 39 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 40 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 40 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 40 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 40 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 40 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 40 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 40 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 40 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 40 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 40 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 40 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 40 resolved as shift
-WARNING: shift/reduce conflict for AND in state 40 resolved as shift
-WARNING: shift/reduce conflict for OR in state 40 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 40 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 34 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 34 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 34 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 34 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 34 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 34 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 34 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 34 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 34 resolved as shift
+WARNING: shift/reduce conflict for AND in state 34 resolved as shift
+WARNING: shift/reduce conflict for OR in state 34 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 34 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 41 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 41 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 41 resolved as shift
@@ -4109,57 +4268,87 @@ WARNING: shift/reduce conflict for DISTINTO in state 49 resolved as shift
 WARNING: shift/reduce conflict for AND in state 49 resolved as shift
 WARNING: shift/reduce conflict for OR in state 49 resolved as shift
 WARNING: shift/reduce conflict for NOT in state 49 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 50 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 50 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 50 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 50 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 50 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 50 resolved as shift
 WARNING: shift/reduce conflict for MENORQUE in state 50 resolved as shift
 WARNING: shift/reduce conflict for MAYORQUE in state 50 resolved as shift
 WARNING: shift/reduce conflict for MENORIGUAL in state 50 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 50 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 50 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 50 resolved as shift
-WARNING: shift/reduce conflict for PARDER in state 63 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 63 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 63 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 63 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 63 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 63 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 63 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 63 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 63 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 63 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 63 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 63 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 63 resolved as shift
-WARNING: shift/reduce conflict for AND in state 63 resolved as shift
-WARNING: shift/reduce conflict for OR in state 63 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 63 resolved as shift
-WARNING: shift/reduce conflict for PARDER in state 64 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 64 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 64 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 64 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 64 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 64 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 64 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 64 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 64 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 64 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 64 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 64 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 64 resolved as shift
-WARNING: shift/reduce conflict for AND in state 64 resolved as shift
-WARNING: shift/reduce conflict for OR in state 64 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 64 resolved as shift
-WARNING: shift/reduce conflict for PARDER in state 65 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 65 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 65 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 65 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 65 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 65 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 65 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 65 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 65 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 65 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 65 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 65 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 65 resolved as shift
-WARNING: shift/reduce conflict for AND in state 65 resolved as shift
-WARNING: shift/reduce conflict for OR in state 65 resolved as shift
-WARNING: shift/reduce conflict for NOT in state 65 resolved as shift
+WARNING: shift/reduce conflict for AND in state 50 resolved as shift
+WARNING: shift/reduce conflict for OR in state 50 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 50 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 51 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 51 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 51 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 51 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 51 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 51 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 51 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 51 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 51 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 51 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 51 resolved as shift
+WARNING: shift/reduce conflict for AND in state 51 resolved as shift
+WARNING: shift/reduce conflict for OR in state 51 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 51 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 52 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 52 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 52 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 52 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 52 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 52 resolved as shift
+WARNING: shift/reduce conflict for PARDER in state 66 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 66 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 66 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 66 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 66 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 66 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 66 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 66 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 66 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 66 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 66 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 66 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 66 resolved as shift
+WARNING: shift/reduce conflict for AND in state 66 resolved as shift
+WARNING: shift/reduce conflict for OR in state 66 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 66 resolved as shift
+WARNING: shift/reduce conflict for PARDER in state 67 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 67 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 67 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 67 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 67 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 67 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 67 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 67 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 67 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 67 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 67 resolved as shift
+WARNING: shift/reduce conflict for AND in state 67 resolved as shift
+WARNING: shift/reduce conflict for OR in state 67 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 67 resolved as shift
+WARNING: shift/reduce conflict for PARDER in state 68 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 68 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 68 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 68 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 68 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 68 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 68 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 68 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 68 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 68 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 68 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 68 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 68 resolved as shift
+WARNING: shift/reduce conflict for AND in state 68 resolved as shift
+WARNING: shift/reduce conflict for OR in state 68 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 68 resolved as shift
