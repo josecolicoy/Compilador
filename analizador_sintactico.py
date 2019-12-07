@@ -3,6 +3,12 @@
 import ply.yacc as yacc
 from lexico import tokens
 from lexico import analizador
+<<<<<<< HEAD
+=======
+
+
+print (tokens)
+>>>>>>> master
 
 # resultado del analisis
 resultado_gramatica = []
@@ -24,14 +30,7 @@ def p_declaracion_asignar(t):
     nombres[t[1]] = t[3]
 
 def p_expresion_operaciones(t):
-    '''
-    expresion  :   expresion SUMA expresion
-                |   expresion RESTA expresion
-                |   expresion MULT expresion
-                |   expresion DIV expresion
-                |   expresion POTENCIA expresion
-                |   expresion MODULO expresion
-    '''
+
     if t[2] == '+':
         t[0] = t[1] + t[3]
     elif t[2] == '-':
