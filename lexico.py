@@ -6,20 +6,22 @@ resultado_lexema = []
 
 reservada = [
     # Palabras Reservadas
-    'CADENA', 
+    'INCLUDE',
+   'CADENA',
+    'INT',
     'comentarios'
 ]
 tokns = {
-    # -------->   definir su regla gramatical 
     #Condicionales
-    'ari' : 'ARI', #if
-    'wak' : "WAK", #else
+    'ari' : 'ARI',
+    'wak' : "WAK",
     #Ciclos
-    'unay' : 'UNAY', # while 
-    'rayku' : 'RAYKU', # for 
+    'unay' : 'UNAY',
+    'rayku' : 'RAYKU',
     #Mostrar
-    'rikuchiy':'RIKUCHIY', # print
-    'tantay':'TANTAY', #  import 
+    'rikuchiy':'RIKUCHIY',
+    'tantay':'TANTAY',
+    'qupuy' : 'QUPUY'
 }
 
 tokens = reservada + [
@@ -100,6 +102,11 @@ def t_IDENTIFICADOR(t):
     if t.value in tokns:
         t.type = tokns[ t.value ]
     return t
+
+def t_INCLUDE(t):
+    r'yaykuchiy'
+    return t
+
 
 def t_ENTERO(t):
     r'\d+'

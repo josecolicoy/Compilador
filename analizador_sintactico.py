@@ -1,9 +1,14 @@
+# -*- coding: utf-8 -*-
+
 import ply.yacc as yacc
 from lexico import tokens
 from lexico import analizador
+<<<<<<< HEAD
+=======
 
 
 print (tokens)
+>>>>>>> master
 
 # resultado del analisis
 resultado_gramatica = []
@@ -16,14 +21,13 @@ precedence = (
 )
 nombres = {}
 
+def p_declaracion_expresion(t):
+    'expresion : declaracion'
+    t[0] = t[1]
+
 def p_declaracion_asignar(t):
     'declaracion : IDENTIFICADOR ASIGNAR expresion'
     nombres[t[1]] = t[3]
-
-def p_declaracion_expr(t):
-    'declaracion : expresion'
-    # print("Resultado: " + str(t[1]))
-    t[0] = t[1]
 
 def p_expresion_operaciones(t):
     '''
@@ -61,7 +65,7 @@ def p_expresion_uminus(t):
 
 def p_expresion_grupo(t):
     '''
-    expresion  : PARIZQ expresion PARDER
+    expresion  :  PARIZQ expresion PARDER
                 | LLAIZQ expresion LLADER
                 | CORIZQ expresion CORDER
     '''
@@ -144,19 +148,43 @@ def p_expresion_nombre(t):
         print("Nombre desconocido ", t[1])
         t[0] = 0
 
-def p_comentario(t):
-    'expresion : NUMERAL expresion'
-    t[0] = t[2]
-
-
-def p_condicion_ari(t): #condicion if 
-    'expresion : ARI PARIZQ expresion PARDER DPUNTOS'
+def p_expresion_mostrar_rikuchiy(t):
+    '''
+    expresion   :   RIKUCHIY PARIZQ expresion PARDER
+                |   RIKUCHIY PARIZQ CADENA PARDER
+                |   RIKUCHIY PARIZQ CADENA SUMA expresion PARDER
+    '''
     t[0]=t[3]
 
-def p_condicion_wak(t): #condicion else
-    'expresion : WAK PARIZQ expresion PARDER DPUNTOS'
+def p_expresion_incluir_tantay(t):
+    'expresion : TANTAY CADENA'
+    t[0]=t[2]
+
+def p_expresion_ciclo_unay(t):
+    '''
+    expresion : UNAY PARIZQ expresion PARDER LLAIZQ
+              | UNAY PARIZQ expresion PARDER
+              | UNAY PARIZQ expresion PARDER LLAIZQ expresion LLADER
+              | UNAY PARIZQ expresion PARDER LLAIZQ CADENA LLADER
+    '''
     t[0]=t[3]
 
+def p_expresion_ciclo_rayku(t):
+    '''
+    expresion : RAYKU IDENTIFICADOR PI expresion LLAIZQ
+              | RAYKU IDENTIFICADOR PI expresion
+              | RAYKU IDENTIFICADOR PI expresion LLAIZQ expresion LLADER
+              | RAYKU IDENTIFICADOR PI expresion LLAIZQ CADENA LLADER
+    '''
+    t[0]=t[4]
+
+def p_expresion_clave_d(t):
+    'expresion : COMDOB CADENA COMDOB'
+    t[0]=t[2]
+
+def p_expresion_diccionario(t):
+    'expresion : expresion DPUNTOS expresion'
+    t[0]=t[3]
 
 def p_error(t):
     global resultado_gramatica
