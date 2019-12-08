@@ -3,12 +3,8 @@
 import ply.yacc as yacc
 from lexico import tokens
 from lexico import analizador
-<<<<<<< HEAD
-=======
 
 
-print (tokens)
->>>>>>> master
 
 # resultado del analisis
 resultado_gramatica = []
@@ -185,6 +181,20 @@ def p_expresion_clave_d(t):
 def p_expresion_diccionario(t):
     'expresion : expresion DPUNTOS expresion'
     t[0]=t[3]
+
+def p_condicion_ari(t): #condicion if 
+    'expresion : ARI PARIZQ expresion PARDER DPUNTOS'
+    t[0]=t[3]
+
+def p_condicion_wak(t): #condicion else
+    'expresion : WAK PARIZQ expresion PARDER DPUNTOS'
+    t[0]=t[3]
+
+def p_comentario(t): #comentarios
+    'expresion : NUMERAL expresion'
+    t[0] = t[2]
+
+
 
 def p_error(t):
     global resultado_gramatica
