@@ -220,14 +220,11 @@ def p_condicion_wak(t): #condicion else
 
 def p_comentario(t): #comentarios
     'expresion : NUMERAL expresion'
-    t[0] = t[2]
+    t[0]=t[2]
 
-def p_expresion_qhapaq_main(t):
-    '''
-    expresion : QHAPAQ PARIZQ PARDER LLAIZQ
-              | QHAPAQ PARIZQ PARDER LLAIZQ expresion LLADER
-    '''
-    t[0]=t[1]
+def p_funciones(t):
+    'expresion : SAYARICHIY IDENTIFICADOR PARIZQ IDENTIFICADOR PARDER LLAIZQ expresion LLADER' 
+    t[0]=t[7] 
 
 def p_error(t):
     global resultado_gramatica

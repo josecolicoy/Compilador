@@ -18,13 +18,11 @@ tokns = {
     'unay' : 'UNAY', # while 
     'rayku' : 'RAYKU', # for 
     #Mostrar
-    'rikuchiy':'RIKUCHIY', # print
-    'tantay':'TANTAY', #  import 
+    'rikuchiy':'RIKUCHIY',
+    'tantay':'TANTAY',
     'qupuy' : 'QUPUY',
-    #En de rayku
     'pi':'PI',
-    #inicio de programa
-    'qhapaq':'QHAPAQ'
+    'sayarichiy':'SAYARICHIY'#Funciones
 }
 
 tokens = reservada + [
