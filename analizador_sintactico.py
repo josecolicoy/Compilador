@@ -203,19 +203,26 @@ def p_expresion_arreglo(t):
     'expresion : IDENTIFICADOR ASIGNAR CORIZQ term CORDER'
     t[0]=t[4]
 
-def p_term(t):
-    '''
-    term : expresion
-         | expresion COMA term
-    '''
-    valores[t[0]]=t[1]
+def p_term_expresion(t):
+    'term : expresion'
+    t[0]=t[1]
+
+def p_expresion_term(t):
+    'expresion : expresion COMA term'
+    t[0]=t[1]
 
 def p_condicion_ari(t): #condicion if 
-    'expresion : ARI PARIZQ expresion PARDER DPUNTOS'
+    '''
+    expresion : ARI PARIZQ expresion PARDER LLAIZQ
+              | ARI PARIZQ expresion PARDER LLAIZQ expresion LLADER
+    '''
     t[0]=t[3]
 
 def p_condicion_wak(t): #condicion else
-    'expresion : WAK PARIZQ expresion PARDER DPUNTOS'
+    '''
+    expresion : WAK PARIZQ expresion PARDER LLAIZQ
+              | WAK PARIZQ expresion PARDER LLAIZQ expresion LLADER
+    '''
     t[0]=t[3]
 
 def p_comentario(t): #comentarios
@@ -225,6 +232,16 @@ def p_comentario(t): #comentarios
 def p_funciones(t):
     'expresion : SAYARICHIY IDENTIFICADOR PARIZQ IDENTIFICADOR PARDER LLAIZQ expresion LLADER' 
     t[0]=t[7] 
+
+def p_vacio(p):
+    'vacio :'
+    pass
+
+def p_expresion_ingreso_yaykut(t):
+    '''
+    expresion : IDENTIFICADOR ASIGNAR YAYKUY PARIZQ PARDER
+    '''
+    nombres[t[1]]=input()
 
 def p_error(t):
     global resultado_gramatica
