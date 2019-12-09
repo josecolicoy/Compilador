@@ -237,6 +237,12 @@ def p_vacio(p):
     'vacio :'
     pass
 
+def p_expresion_ingreso_yaykut(t):
+    '''
+    expresion : IDENTIFICADOR ASIGNAR YAYKUY PARIZQ PARDER
+    '''
+    nombres[t[1]]=input()
+
 def p_error(t):
     global resultado_gramatica
     if t:

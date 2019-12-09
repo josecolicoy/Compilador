@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import ply.lex as lex
 import os
 
@@ -6,37 +8,46 @@ resultado_lexema = []
 
 reservada = [
     # Palabras Reservadas
-    'CADENA', 
+    'INCLUDE',
+   'CADENA',
+    'INT',
     'comentarios'
 ]
 tokns = {
-    # -------->   definir su regla gramatical 
     #Condicionales
-    'ari' : 'ARI', #if
-    'wak' : "WAK", #else
+    'ari' : 'ARI',
+    'wak' : "WAK",
     #Ciclos
-    'unay' : 'UNAY', # while 
-    'rayku' : 'RAYKU', # for 
+    'unay' : 'UNAY',
+    'rayku' : 'RAYKU',
     #Mostrar
     'rikuchiy':'RIKUCHIY',
     'tantay':'TANTAY',
     'qupuy' : 'QUPUY',
+    #En de rayku
     'pi':'PI',
-    'sayarichiy':'SAYARICHIY'#Funciones
+    #inicio de programa
+    'qhapaq':'QHAPAQ',
+    'sayarichiy':'SAYARICHIY',
+    #entrada
+    'yaykuy':'YAYKUY'
 }
 
 tokens = reservada + [
+    'IDENTIFICADOR',
+    'ENTERO',
+    'ASIGNAR',
+
     'SUMA',
     'RESTA',
     'MULT',
     'DIV',
     'POTENCIA',
     'MODULO',
-    'IDENTIFICADOR',
-    'ENTERO',
-    'ASIGNAR',
-    'MINUSMINUS',
-    'PLUSPLUS',
+
+   'MINUSMINUS',
+   'PLUSPLUS',
+
     #logica
     'AND',
     'OR',
@@ -49,12 +60,14 @@ tokens = reservada + [
     'DISTINTO',
     # Symbolos
     'NUMERAL',
+
     'PARIZQ',
     'PARDER',
     'CORIZQ',
     'CORDER',
     'LLAIZQ',
     'LLADER',
+    
     # Otros
     'PUNTOCOMA',
     'COMA',
@@ -68,15 +81,16 @@ tokens = reservada + [
 tokens += tokns.values()
 
 # Reglas de Expresiones Regualres para token de Contexto simple
-#aritmeticos
+
 t_SUMA = r'\+'
 t_RESTA = r'-'
+t_MINUSMINUS = r'\-\-'
+# t_PUNTO = r'\.'
 t_MULT = r'\*'
 t_DIV = r'/'
-t_MINUSMINUS = r'\-\-'
+t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
 
-t_MODULO = r'\%'
 t_ASIGNAR = r'='
 # Expresiones Logicas
 t_AND = r'\&\&'
@@ -103,6 +117,11 @@ def t_IDENTIFICADOR(t):
     if t.value in tokns:
         t.type = tokns[ t.value ]
     return t
+
+def t_INCLUDE(t):
+    r'yaykuchiy'
+    return t
+
 
 def t_ENTERO(t):
     r'\d+'
@@ -151,10 +170,10 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 
-# def t_comentarios(t):
-#      r'\+(\w\d*\s*)+\*+'
-#      t.lexer.lineno += 1
-#      print("Comentario en una linea")
+def t_comentarios(t):
+     r'\+(\w\d*\s*)+\*+'
+     t.lexer.lineno += 1
+     print("Comentario en una linea")
      
 t_ignore =' \t\n'
 
