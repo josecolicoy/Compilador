@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import random
 import ply.yacc as yacc
 from lexico import tokens
 from lexico import analizador
@@ -147,7 +148,7 @@ def p_expresion_nombre(t):
 def p_expresion_mostrar_rikuchiy(t):
     '''
     expresion   :   RIKUCHIY PARIZQ expresion PARDER
-                |   RIKUCHIY PARIZQ CADENA PARDER
+                |   RIKUCHIY PARIZQ CADENA CADENA PARDER
                 |   RIKUCHIY PARIZQ CADENA SUMA expresion PARDER
     '''
     t[0]=t[3]
@@ -162,8 +163,13 @@ def p_expresion_ciclo_unay(t):
               | UNAY PARIZQ expresion PARDER
               | UNAY PARIZQ expresion PARDER LLAIZQ expresion LLADER
               | UNAY PARIZQ expresion PARDER LLAIZQ CADENA LLADER
+              | UNAY CHIQA LLAIZQ expresion LLADER
+              | UNAY CHIQA LLAIZQ
     '''
-    t[0]=t[3]
+    if(t[2]) == 'chiqa':
+        t[0]=t[2]
+    else:
+        t[0]=t[3]
 
 def p_expresion_ciclo_rayku(t):
     '''
@@ -177,7 +183,7 @@ def p_expresion_ciclo_rayku(t):
 
 def p_expresion_diccionario(t):
     'expresion : IDENTIFICADOR ASIGNAR LLAIZQ terminologia LLADER'
-    t[0]=t[4]
+    nombres[t[1]]=t[4]
 
 def p_expresion_terminologia(t):
     'expresion : terminologia'
@@ -233,15 +239,15 @@ def p_funciones(t):
     'expresion : SAYARICHIY IDENTIFICADOR PARIZQ IDENTIFICADOR PARDER LLAIZQ expresion LLADER' 
     t[0]=t[7] 
 
-def p_vacio(p):
-    'vacio :'
-    pass
-
 def p_expresion_ingreso_yaykut(t):
     '''
     expresion : IDENTIFICADOR ASIGNAR YAYKUY PARIZQ PARDER
     '''
     nombres[t[1]]=input()
+
+def p_expresion_azar_sami(t):
+    'expresion : SAMI PARIZQ ENTERO COMA ENTERO PARDER'
+    t[0]=random.randint(t[3],t[5])
 
 def p_error(t):
     global resultado_gramatica
@@ -271,14 +277,15 @@ def prueba_sintactica(data):
     return resultado_gramatica
 
 if __name__ == '__main__':
-    while True:
-        try:
-            s = input(' ingresa dato >>> ')
-        except EOFError:
-            continue
-        if not s: continue
+        f = open('code_trueque.qch','r+')
 
         # gram = parser.parse(s)
         # print("Resultado ", gram)
 
-        prueba_sintactica(s)
+        data = f.readlines()
+        for res in data:
+            prueba_sintactica(res)
+        #os.system("pause")
+        #prueba_sintactica(s)
+
+        
