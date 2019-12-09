@@ -1,59 +1,7 @@
 #tantay pacha
-"universidad"
-ariq = {
-    "llaima" : { "takyay" : "qhasi" ,
-                "samay" : "muqu ura" ,
-                "muyupayay" : 20,
-                "kuyuy" : 100},
-    "chaiten" : {"takyay" : "wallpaywana",
-                   "samay" : "muqu janaq",
-                   "muyupayay" : 100,
-                   "kuyuy" : 20
-                   }
-    }
-rikuchiy(ariq)
-sayarichiy ruwana_ariq(ariq,takyay){
-    ariq[ariq]["takyay"] = takyay
-}
-
-
-sayarichiy muyupayay(ariq1) {
-    *wallpaywana*
-
-    ari(ariq[ariq1][ "muyupayay" ] > 10 & ariq[ariq1]["kuyuy"] > 10){
-        ari(ariq[ariq1][ "samay" ] == "muqu janaq"){
-            rikuchiy( "muyupayay muqu" )
-            ariq[ariq1][ "takyay" ] = "wallpaywana"
-        }
-    }
-
-#atiklla 
-
-    ari(ariq[ariq1][ "muyupayay" ] > 20 & ariq[ariq1][ "kuyuy" ] > 10){
-        ari(ariq[ariq1][ "samay" ] == "muqu ura"){
-            rikuchiy( "muyupayay muqu" )
-            ariq[ariq1][ "takyay" ] = "wallpaywana"
-        }
-    }  
-    ari(ariq[ariq1][ "takyay" ] == "wallpaywana"){
-        rikuchiy("saqiy")
-    }
-    jinaqa(ariq[ariq1][ "takyay" ] == "atiklla"){
-        rikuchiy( "atiklla" )
-    }
-        
-    wak{
-        rikuchiy( "suyu takya" )
-    }
-}
-
-qhapaq(){
-    unay chiqa{
-        pacha.suyay(5)
-        rayku i pi ariq{
-            a = i
-            muyupayay(a)
-            rikuchiy( "ariq" + i )
-        }
-    }
+llaima = 70
+rikuchiy(llaima)
+unay chiqa{
+    llaima = sami(0,100)
+    rikuchiy(llaima)
 }
