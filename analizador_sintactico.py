@@ -133,8 +133,8 @@ def p_expresion_numero(t):
     t[0] = t[1]
 
 def p_expresion_cadena(t):
-    'expresion : COMDOB expresion COMDOB'
-    t[0] = t[2]
+    'expresion : CADENA'
+    t[0] = t[1]
 
 def p_expresion_nombre(t):
     'expresion : IDENTIFICADOR'
@@ -174,13 +174,41 @@ def p_expresion_ciclo_rayku(t):
     '''
     t[0]=t[4]
 
-def p_expresion_clave_d(t):
-    'expresion : COMDOB CADENA COMDOB'
-    t[0]=t[2]
 
 def p_expresion_diccionario(t):
-    'expresion : expresion DPUNTOS expresion'
+    'expresion : IDENTIFICADOR ASIGNAR LLAIZQ terminologia LLADER'
+    t[0]=t[4]
+
+def p_expresion_terminologia(t):
+    'expresion : terminologia'
+    t[0]=t[1]
+
+def p_terminologia_clave(t):
+    'terminologia : CADENA DPUNTOS valor'
     t[0]=t[3]
+
+valores = {}
+def p_expresion_valor(t):
+    '''
+    valor : expresion
+          | expresion COMA expresion
+          | LLAIZQ expresion LLADER
+    '''
+    if t[1]=='{':
+        valores[t[0]]=t[2]
+    else:
+        valores[t[0]]=t[1]
+
+def p_expresion_arreglo(t):
+    'expresion : IDENTIFICADOR ASIGNAR CORIZQ term CORDER'
+    t[0]=t[4]
+
+def p_term(t):
+    '''
+    term : expresion
+         | expresion COMA term
+    '''
+    valores[t[0]]=t[1]
 
 def p_condicion_ari(t): #condicion if 
     'expresion : ARI PARIZQ expresion PARDER DPUNTOS'
@@ -194,7 +222,12 @@ def p_comentario(t): #comentarios
     'expresion : NUMERAL expresion'
     t[0] = t[2]
 
-
+def p_expresion_qhapaq_main(t):
+    '''
+    expresion : QHAPAQ PARIZQ PARDER LLAIZQ
+              | QHAPAQ PARIZQ PARDER LLAIZQ expresion LLADER
+    '''
+    t[0]=t[1]
 
 def p_error(t):
     global resultado_gramatica
