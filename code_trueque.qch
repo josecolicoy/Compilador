@@ -8,10 +8,10 @@ a=input()
 print("")
 a=input()
 
-print("")
-print("")
-print("")
-
+print("incluir producto")
+print("incluir producto")
+print("aceptar")
+print("Error")
 
 
 
@@ -23,10 +23,10 @@ rikuchiy("yaykuy chani wanlla b")
 b=yaykuy()
 
 ari(a>b):
-	rikuchiy("b agrega wanlla")
+	rikuchiy("b maqay wanlla")
 ari(a<b):
-	rikuchiy("a agrega wanlla")
+	rikuchiy("a maqay wanlla")
 ari(a==b):
-	rikuchiy("aceptado")
+	rikuchiy("ari niy")
 wak:
-	rikuchiy("incorrecto")
+	rikuchiy("panta")
