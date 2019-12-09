@@ -1,0 +1,32 @@
+#tantay pacha
+"universidad"
+
+###########################CODIGO EN PYTHON###########################
+
+print("ingrese valor producto a")
+a=input()
+print("")
+a=input()
+
+print("incluir producto")
+print("incluir producto")
+print("aceptar")
+print("Error")
+
+
+
+###############################CODIGO EN QUECHUA#########################
+
+rikuchiy("yaykuy chani wanlla a")
+a=yaykuy()
+rikuchiy("yaykuy chani wanlla b")
+b=yaykuy()
+
+ari(a>b):
+	rikuchiy("b maqay wanlla")
+ari(a<b):
+	rikuchiy("a maqay wanlla")
+ari(a==b):
+	rikuchiy("ari niy")
+wak:
+	rikuchiy("panta")
